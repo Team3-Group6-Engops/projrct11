@@ -13,9 +13,9 @@ pipeline{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkinsgit', url: 'https://github.com/Team3-Group6-Engops/projrct11.git']]])
             }
         }
-        stage('parallel-slave1'){
+        stage('Running on slave1'){
           parallel{
-            stage('sub stage 1'){
+            stage('sub slave1'){
                 agent{
                     label{
                         label 'slave1'
@@ -25,7 +25,7 @@ pipeline{
                     sh 'whoami'
                 }
             }
-            stage('sub stage2'){
+            stage('sub slave1-2'){
                 steps{
                     sh 'free -m'
                 }
@@ -37,9 +37,9 @@ pipeline{
             }
           }
         }
-        stage('stage for node 2'){
+        stage('Running on slave2'){
             parallel{
-                stage('sub parallel node2'){
+                stage('sub slave2'){
                     agent{
                         label{
                             label 'slave2'
@@ -49,7 +49,7 @@ pipeline{
                         echo "I am a Devops Engineer"
                     }
                 }
-                stage('sub parallel2 node2'){
+                stage('sub node2-2'){
                     steps{
                         echo "We shall all get there"
                     }
@@ -61,10 +61,10 @@ pipeline{
                 }
             }
         }
-        stage('stage for node 3'){
+        stage('Running on slave3'){
             
             parallel{
-                stage('sub parallel1 node3'){
+                stage('sub node3'){
                     steps{
                         echo "We are now senior Engineers"
                     }
@@ -74,7 +74,7 @@ pipeline{
                         }
                     }
                 }
-                stage('sub parallel2 node3'){
+                stage('sub node3-2'){
                     agent{
                         label{
                             label 'slave3'
@@ -86,7 +86,7 @@ pipeline{
                 }
             }
         }
-        stage('stage 4'){
+        stage('stage 4 slave3'){
             steps{
                 sh 'lscpu'
             }
@@ -96,7 +96,7 @@ pipeline{
                 }
             }
         }
-        stage('stage4 level2'){
+        stage('stage4 slave32'){
             agent{
                 label{
                     label 'slave3'
