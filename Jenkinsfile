@@ -60,6 +60,11 @@ pipeline{
             steps{
                 sh 'lscpu'
             }
+            agent{
+                label{
+                    label 'slave2'
+                }
+            }
         }
         stage('stage4 level2'){
             agent{
