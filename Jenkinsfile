@@ -62,6 +62,11 @@ pipeline{
             }
         }
         stage('stage4 level2'){
+            agent{
+                label{
+                    label 'slave2'
+                }
+            }
             steps{
                 echo 'I believe I can do this'
             }
