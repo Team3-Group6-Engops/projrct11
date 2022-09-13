@@ -30,6 +30,11 @@ pipeline{
         stage('stage for node 2'){
             parallel{
                 stage('sub parallel node2'){
+                    agent{
+                        label{
+                            label 'slave3'
+                        }
+                    }
                     steps{
                         echo "I am a Devops Engineer"
                     }
@@ -37,6 +42,11 @@ pipeline{
                 stage('sub parallel2 node2'){
                     steps{
                         echo "We shall all get there"
+                    }
+                    agent{
+                        label{
+                            label 'slave1'
+                        }
                     }
                 }
             }
