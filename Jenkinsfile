@@ -1,9 +1,4 @@
 pipeline{
-    agent{
-        label{
-            label 'slave1'
-        }
-    }
     tools{
         maven 'maven'
     }
@@ -16,6 +11,11 @@ pipeline{
         stage('parallel-slave1'){
           parallel{
             stage('sub stage 1'){
+                agent{
+                    label{
+                        label 'slave1'
+                    }
+                }
                 steps{
                     sh 'whoami'
                 }
@@ -23,6 +23,11 @@ pipeline{
             stage('sub stage2'){
                 steps{
                     sh 'free -m'
+                }
+                agent{
+                    label{
+                        label 'slave1'
+                    }
                 }
             }
           }
@@ -32,7 +37,7 @@ pipeline{
                 stage('sub parallel node2'){
                     agent{
                         label{
-                            label 'slave3'
+                            label 'slave2'
                         }
                     }
                     steps{
@@ -45,7 +50,7 @@ pipeline{
                     }
                     agent{
                         label{
-                            label 'slave1'
+                            label 'slave2'
                         }
                     }
                 }
@@ -58,8 +63,18 @@ pipeline{
                     steps{
                         echo "We are now senior Engineers"
                     }
+                    agent{
+                        label{
+                            label 'slave3'
+                        }
+                    }
                 }
                 stage('sub parallel2 node3'){
+                    agent{
+                        label{
+                            label 'slave3'
+                        }
+                    }
                     steps{
                         echo "Etech Consulting is great"
                     }
@@ -72,14 +87,14 @@ pipeline{
             }
             agent{
                 label{
-                    label 'slave2'
+                    label 'slave3'
                 }
             }
         }
         stage('stage4 level2'){
             agent{
                 label{
-                    label 'slave2'
+                    label 'slave3'
                 }
             }
             steps{
