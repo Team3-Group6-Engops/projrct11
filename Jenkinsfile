@@ -28,11 +28,6 @@ pipeline{
           }
         }
         stage('stage for node 2'){
-            agent{
-                label{
-                    label 'slave2'
-                }
-            }
             parallel{
                 stage('sub parallel node2'){
                     steps{
@@ -47,11 +42,7 @@ pipeline{
             }
         }
         stage('stage for node 3'){
-            agent{
-                label{
-                    label 'slave3'
-                }
-            }
+            
             parallel{
                 stage('sub parallel1 node3'){
                     steps{
@@ -63,11 +54,6 @@ pipeline{
                         echo "Etech Consulting is great"
                     }
                 }
-            }
-        }
-        agent{
-            label{
-                label 'slave1'
             }
         }
         stage('stage 4'){
