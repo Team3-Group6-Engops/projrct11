@@ -46,7 +46,7 @@ pipeline{
                 }
             }
         }
-        stage('Running on slave2b'){
+        stage('Also running on slave2'){
             parallel{
                 stage('sub slave2b'){
                     steps{
@@ -60,7 +60,7 @@ pipeline{
                 }
             }
         }
-        stage('stage 4 slave3'){
+        stage('Running on slave3'){
             agent{
                 label{
                     label 'slave3'
@@ -70,7 +70,7 @@ pipeline{
                 sh 'lscpu'
             }
         }
-        stage('stage4 slave3-2'){
+        stage('Also running on slave3'){
             steps{
                 echo 'I believe I can do this'
             }
