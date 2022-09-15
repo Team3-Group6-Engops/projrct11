@@ -46,14 +46,14 @@ pipeline{
                 }
             }
         }
-        stage('Running on slave2'){
+        stage('Running on slave2b'){
             parallel{
-                stage('sub slave2'){
+                stage('sub slave2b'){
                     steps{
                         echo "We are now senior Engineers"
                     }
                 }
-                stage('sub node2-2'){
+                stage('sub node2-2b'){
                     steps{
                         echo "Etech Consulting is great"
                     }
