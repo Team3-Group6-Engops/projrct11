@@ -16,11 +16,6 @@ pipeline{
         stage('Running on slave1'){
           parallel{
             stage('sub slave1'){
-                agent{
-                    label{
-                        label 'slave1'
-                    }
-                }
                 steps{
                     sh 'whoami'
                 }
@@ -28,11 +23,6 @@ pipeline{
             stage('sub slave1-2'){
                 steps{
                     sh 'free -m'
-                }
-                agent{
-                    label{
-                        label 'slave1'
-                    }
                 }
             }
           }
@@ -49,37 +39,21 @@ pipeline{
                         echo "I am a Devops Engineer"
                     }
                 }
-                stage('sub node2-2'){
+                stage('sub slave2-2'){
                     steps{
                         echo "We shall all get there"
-                    }
-                    agent{
-                        label{
-                            label 'slave2'
-                        }
-                    }
+                    }              
                 }
             }
         }
-        stage('Running on slave3'){
-            
+        stage('Running on slave2'){
             parallel{
-                stage('sub node3'){
+                stage('sub slave2'){
                     steps{
                         echo "We are now senior Engineers"
                     }
-                    agent{
-                        label{
-                            label 'slave3'
-                        }
-                    }
                 }
-                stage('sub node3-2'){
-                    agent{
-                        label{
-                            label 'slave3'
-                        }
-                    }
+                stage('sub node2-2'){
                     steps{
                         echo "Etech Consulting is great"
                     }
@@ -87,21 +61,16 @@ pipeline{
             }
         }
         stage('stage 4 slave3'){
+            agent{
+                label{
+                    label 'slave3'
+                }
+            }
             steps{
                 sh 'lscpu'
             }
-            agent{
-                label{
-                    label 'slave3'
-                }
-            }
         }
-        stage('stage4 slave32'){
-            agent{
-                label{
-                    label 'slave3'
-                }
-            }
+        stage('stage4 slave3-2'){
             steps{
                 echo 'I believe I can do this'
             }
