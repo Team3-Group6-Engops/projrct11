@@ -11,7 +11,7 @@ Note: You need to ssh into the servers before following these steps
 6. You will see config.xml ( this needs to be copied to another server) Note: This is optional only if you want to copy job without build info
 7.Copy entire folder into other machine using the scp command
 8. run the command below:
-scp -r  Job_Name user@targetip:destination_Path
+scp -r -i key Job_Name user@targetip:destination_Path
 9. Go to Target Jenkins (front End) click Manage Jenkins >>> Click Reload Configuration From Disk and click Ok
  
 It will take a couple of seconds, but you will see your imported Jenkins job appearing in your target Jenkins Server
